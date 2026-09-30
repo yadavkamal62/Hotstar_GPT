@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import SideBar from './Components/SideBar'
 
-
+import Body  from "./Components/Body"
 function App() {
 
 
   return (
     <>
-     <h1 className=' bg-pink-600'>hii kamal</h1> 
+     <SideBar/>
+     <Body/>
     </>
   )
 }

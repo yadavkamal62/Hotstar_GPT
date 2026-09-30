@@ -19,7 +19,7 @@ const Auth = () => {
       <div className="card w-full max-w-sm bg-base-100 shadow-2xl border border-base-200">
         <form onSubmit={handleSubmit} className="card-body gap-4">
           
-          {/* Header */}
+         
           <div className="text-center">
             <h2 className="text-2xl font-bold">
               {isSignUp ? 'Create Account' : 'Welcome Back'}
@@ -31,7 +31,7 @@ const Auth = () => {
             </p>
           </div>
 
-          {/* Google Login - Only shown on Sign In */}
+          
           {!isSignUp && (
             <>
               <button
@@ -49,7 +49,7 @@ const Auth = () => {
             </>
           )}
 
-          {/* Full Name Field - Only shown on Sign Up */}
+         
           {isSignUp && (
             <div className="form-control">
               <label className="label py-1">
@@ -69,7 +69,7 @@ const Auth = () => {
             </div>
           )}
 
-          {/* Email Field */}
+          
           <div className="form-control">
             <label className="label py-1">
               <span className="label-text font-medium">Email</span>
@@ -87,7 +87,7 @@ const Auth = () => {
             </div>
           </div>
 
-          {/* Password Field */}
+          
           <div className="form-control">
             <div className="flex justify-between items-center">
               <label className="label py-1">
@@ -112,12 +112,12 @@ const Auth = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
+         
           <button type="submit" className="btn btn-primary w-full mt-2">
             {isSignUp ? 'Create Account' : 'Sign In'}
           </button>
 
-          {/* Bottom Switch Link */}
+          
           <p className="text-center text-xs text-base-content/70 mt-1">
             {isSignUp ? 'Already have an account?' : 'Don’t have an account?'}{' '}
             <button
