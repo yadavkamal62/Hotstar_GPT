@@ -1,138 +1,102 @@
-import React, { useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import { MdEmail, MdLock, MdPerson } from 'react-icons/md';
+import React, { useRef, useState } from 'react'
 
-const Auth = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
+import { checkValidData } from '../utils/validation';
 
-  const handleGoogleAuth = () => {
-    console.log("Google Login clicked");
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(`Form submitted for ${isSignUp ? 'Sign Up' : 'Sign In'}`);
-  };
+const Login = () => {
+
+
+  
+  const [signIn, setSignIn] = useState(true)
+  const [errorMessage, seterrorMessage] = useState(null);
+
+  const toggleSignIn = () => { setSignIn(!signIn) }
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const hendleButtonclick = () => {
+
+    //validate the form data
+
+
+
+    const message = checkValidData(email.current.value, password.current.value);
+    const displayMessage = message.isValid ? null : message.errors.email || message.errors.password;
+    seterrorMessage(displayMessage);
+    if (!message.isValid) return;
+    // sign in logic
+    if (!signIn) {
+    }
+  }
+     
+
+       
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-300 p-4">
-      <div className="card w-full max-w-sm bg-base-100 shadow-2xl border border-base-200">
-        <form onSubmit={handleSubmit} className="card-body gap-4">
-          
-         
-          <div className="text-center">
-            <h2 className="text-2xl font-bold">
-              {isSignUp ? 'Create Account' : 'Welcome Back'}
-            </h2>
-            <p className="text-sm text-base-content/70 mt-1">
-              {isSignUp 
-                ? 'Fill in your details to get started' 
-                : 'Please enter your credentials to sign in'}
-            </p>
-          </div>
+    <div className="relative isolate min-h-dvh bg-black text-white">
+    
 
-          
-          {!isSignUp && (
-            <>
-              <button
-                type="button"
-                onClick={handleGoogleAuth}
-                className="btn btn-outline w-full flex items-center gap-2 hover:bg-base-200"
-              >
-                <FcGoogle className="text-xl" />
-                Continue with Google
-              </button>
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/feature/onboarding/in/welcome_mobile_in_12-02-25.png"
+          alt="logo"
+          className="h-full w-full object-cover opacity-80"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
 
-              <div className="divider text-xs text-base-content/50 uppercase my-0">
-                or
-              </div>
-            </>
+      <div
+        onSubmit={(e) => e.preventDefault()}
+        className="relative z-10 flex min-h-dvh items-center justify-center px-4 py-8 sm:px-6 sm:py-12 md:px-8"
+      >
+        <div className="w-full max-w-sm rounded-2xl border border-white/20 bg-white/10 p-5 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-8 md:max-w-md">
+          <h1 className="mb-6 text-center text-2xl font-bold text-white drop-shadow">
+            {signIn ? 'Sign In' : 'Sign Up'}
+          </h1>
+
+          {!signIn && (
+            <input
+              ref={name}
+              type="text"
+              placeholder="FullName"
+              className="mb-3 w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 backdrop-blur-md transition focus:border-white/50 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30"
+            />
           )}
 
-         
-          {isSignUp && (
-            <div className="form-control">
-              <label className="label py-1">
-                <span className="label-text font-medium">Full Name</span>
-              </label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-base-content/50">
-                  <MdPerson size={18} />
-                </span>
-                <input
-                  type="text"
-                  placeholder="John Doe"
-                  className="input input-bordered w-full pl-10 focus:input-primary"
-                  required={isSignUp}
-                />
-              </div>
-            </div>
-          )}
+          <input
+            ref={email}
+            type="email"
+            placeholder="Email Address"
+            className="mb-3 w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 backdrop-blur-md transition focus:border-white/50 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30"
+          />
 
-          
-          <div className="form-control">
-            <label className="label py-1">
-              <span className="label-text font-medium">Email</span>
-            </label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-base-content/50">
-                <MdEmail size={18} />
-              </span>
-              <input
-                type="email"
-                placeholder="name@example.com"
-                className="input input-bordered w-full pl-10 focus:input-primary"
-                required
-              />
-            </div>
-          </div>
+          <input
+            ref={password}
+            type="password"
+            placeholder="Password"
+            className="mb-4 w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 backdrop-blur-md transition focus:border-white/50 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30"
+          />
 
-          
-          <div className="form-control">
-            <div className="flex justify-between items-center">
-              <label className="label py-1">
-                <span className="label-text font-medium">Password</span>
-              </label>
-              {!isSignUp && (
-                <a href="#" className="text-xs text-primary hover:underline">
-                  Forgot password?
-                </a>
-              )}
-            </div>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-base-content/50">
-                <MdLock size={18} />
-              </span>
-              <input
-                type="password"
-                placeholder="••••••••"
-                className="input input-bordered w-full pl-10 focus:input-primary"
-                required
-              />
-            </div>
-          </div>
+          <p className="mb-4 text-xs text-red-500 sm:text-sm">{errorMessage}</p>
 
-         
-          <button type="submit" className="btn btn-primary w-full mt-2">
-            {isSignUp ? 'Create Account' : 'Sign In'}
+          <button
+            className="w-full cursor-pointer rounded bg-red-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700 active:scale-95"
+            onClick={hendleButtonclick}
+          >
+            {signIn ? 'SignIn' : 'SignUp'}
           </button>
 
-          
-          <p className="text-center text-xs text-base-content/70 mt-1">
-            {isSignUp ? 'Already have an account?' : 'Don’t have an account?'}{' '}
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-primary font-semibold hover:underline"
-            >
-              {isSignUp ? 'Sign in' : 'Sign up'}
-            </button>
+          <p
+            className="mt-4 cursor-pointer text-center text-xs text-white transition hover:text-gray-300 sm:text-sm"
+            onClick={toggleSignIn}
+          >
+            {signIn ? 'New to Netflix? SignUp Now' : 'Already registered? SignIn Now'}
           </p>
-
-        </form>
+        </div>
       </div>
     </div>
-  );
-};
-
-export default Auth;
+  )
+  
+}
+export default Login;

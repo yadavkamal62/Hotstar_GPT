@@ -20,7 +20,7 @@ const SideBar = () => {
   ];
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-16 hover:w-44 cursor-pointer bg-[#0f1014] text-[#8f98b2] flex flex-col justify-center transition-all duration-300 ease-in-out z-50 group border-r border-white/5 select-none">
+    <aside className="fixed left-0 top-0 h-screen w-16 hover:w-44 cursor-pointer bg-[#0f1014] text-[#8f98b2] flex flex-col justify-center transition-all duration-300 ease-in-out z-50 group border-r border-white/5 select-none hover:bg-black/70">
       
       
       <div className="absolute top-6 left-0 w-full flex justify-center group-hover:justify-start group-hover:px-5 cursor-pointer transition-all duration-300">

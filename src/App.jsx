@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import SideBar from './Components/SideBar'
+import Login from './Components/Login'
 
 import Body  from "./Components/Body"
 function App() {
@@ -7,7 +7,8 @@ function App() {
 
   return (
     <>
-     <SideBar/>
+    <Login/>
+     
      <Body/>
     </>
   )

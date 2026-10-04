@@ -1,9 +1,11 @@
 import React from 'react'
-import Login from './Login'
+import  SideBar from "./SideBar"
+
 const Body = () => {
   return (
     <div>
-      <Login/>
+      <SideBar/>
+     
     </div>
   )
 }
