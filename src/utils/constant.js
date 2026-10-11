@@ -9,3 +9,4 @@
 };
 
 export const Poster_CDN_URL="https://image.tmdb.org/t/p/w200/"
+export const Logo_URL = "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/feature/onboarding/in/welcome_mobile_in_12-02-25.png"
