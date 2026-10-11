@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react'
 
 import { checkValidData } from '../utils/validation';
+import { Logo_URL } from '../utils/constant';
+import {createUserWithEmailAndPassword} from "../utils/firbase"
 
 
 const Login = () => {
@@ -27,6 +29,19 @@ const Login = () => {
     if (!message.isValid) return;
     // sign in logic
     if (!signIn) {
+      createUserWithEmailAndPassword(auth,
+         email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+
     }
   }
      
@@ -39,7 +54,7 @@ const Login = () => {
 
       <div className="absolute inset-0 z-0">
         <img
-          src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/feature/onboarding/in/welcome_mobile_in_12-02-25.png"
+        src={Logo_URL}
           alt="logo"
           className="h-full w-full object-cover opacity-80"
         />
@@ -91,7 +106,7 @@ const Login = () => {
             className="mt-4 cursor-pointer text-center text-xs text-white transition hover:text-gray-300 sm:text-sm"
             onClick={toggleSignIn}
           >
-            {signIn ? 'New to Netflix? SignUp Now' : 'Already registered? SignIn Now'}
+            {signIn ? 'New to MovieHub? SignUp Now' : 'Already registered? SignIn Now'}
           </p>
         </div>
       </div>
