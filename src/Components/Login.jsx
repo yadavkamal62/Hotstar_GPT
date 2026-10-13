@@ -2,13 +2,9 @@ import React, { useRef, useState } from 'react'
 
 import { checkValidData } from '../utils/validation';
 import { Logo_URL } from '../utils/constant';
-import {createUserWithEmailAndPassword} from "../utils/firbase"
-
 
 const Login = () => {
 
-
-  
   const [signIn, setSignIn] = useState(true)
   const [errorMessage, seterrorMessage] = useState(null);
 
@@ -19,42 +15,20 @@ const Login = () => {
 
   const hendleButtonclick = () => {
 
-    //validate the form data
-
-
-
     const message = checkValidData(email.current.value, password.current.value);
     const displayMessage = message.isValid ? null : message.errors.email || message.errors.password;
     seterrorMessage(displayMessage);
     if (!message.isValid) return;
     // sign in logic
-    if (!signIn) {
-      createUserWithEmailAndPassword(auth,
-         email.current.value, password.current.value)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
 
-    }
-  }
-     
-
-       
+  };
 
   return (
     <div className="relative isolate min-h-dvh bg-black text-white">
-    
 
       <div className="absolute inset-0 z-0">
         <img
-        src={Logo_URL}
+          src={Logo_URL}
           alt="logo"
           className="h-full w-full object-cover opacity-80"
         />
@@ -93,7 +67,7 @@ const Login = () => {
             className="mb-4 w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 backdrop-blur-md transition focus:border-white/50 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30"
           />
 
-          <p className="mb-4 text-xs text-red-500 sm:text-sm">{errorMessage}</p>
+          {errorMessage&&<p className="mb-4 text-xs text-red-500 sm:text-sm">{errorMessage}</p>}
 
           <button
             className="w-full cursor-pointer rounded bg-red-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700 active:scale-95"
@@ -112,6 +86,6 @@ const Login = () => {
       </div>
     </div>
   )
-  
 }
+
 export default Login;
