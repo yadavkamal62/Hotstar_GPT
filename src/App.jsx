@@ -1,7 +1,7 @@
 import { useState } from 'react'
  import { Provider } from 'react-redux'
  
-import appStore from "./appStore"
+import appStore from "./utils/appStore"
 import Body  from "./Components/Body"
 function App() {
 
